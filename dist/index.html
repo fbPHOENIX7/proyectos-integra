@@ -78,6 +78,10 @@
   <style>
     .trust-heading{display:flex;align-items:center;gap:15px;padding:18px max(38px,calc((100vw - 1120px)/2));border-bottom:1px solid rgba(242,232,201,.16);font:600 12px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--sand)}.trust-heading:after{content:"";display:block;flex:1;height:1px;background:rgba(91,188,224,.48)}.trust-group .trust-title{display:none}@media(max-width:800px){.trust-heading{padding:16px 23px;font-size:11px}}
   </style>
+  <style>
+    /* Method imagery: purpose-built transparent illustrations, each tied to its project phase. */
+    .method-illustration{height:118px;background:linear-gradient(135deg,rgba(166,90,73,.08),rgba(91,188,224,.1))}.method-illustration img{width:100%;height:128px;object-fit:contain;object-position:center;transform:scale(1.02);filter:saturate(.94) contrast(1.04)}.step:hover .method-illustration img{transform:scale(1.08)}@media(max-width:800px){.method-illustration{height:130px}.method-illustration img{height:142px}}@media(prefers-reduced-motion:reduce){.step:hover .method-illustration img{transform:scale(1.02)}}
+  </style>
 </head>
 <body>
   <a class="skip" href="#contenido">Ir al contenido</a>
@@ -117,10 +121,10 @@
     const trustMarkup=`<div class="trust-marquee"><div class="trust-track"><div class="trust-group"><span class="trust-title">Confían en nosotros</span><span class="trust-spark" aria-hidden="true"></span><span class="trust-mark">NEXA</span><span class="trust-spark" aria-hidden="true"></span><span class="trust-mark trust-mark--outline">ACERO NORTE</span><span class="trust-spark" aria-hidden="true"></span><span class="trust-mark">LUMEN</span><span class="trust-spark" aria-hidden="true"></span><span class="trust-mark trust-mark--outline">NODO 07</span><span class="trust-spark" aria-hidden="true"></span><span class="trust-mark">ORBITAL</span><span class="trust-spark" aria-hidden="true"></span><span class="trust-mark trust-mark--outline">PUNTO SUR</span></div><div class="trust-group" aria-hidden="true"><span class="trust-title">Confían en nosotros</span><span class="trust-spark"></span><span class="trust-mark">NEXA</span><span class="trust-spark"></span><span class="trust-mark trust-mark--outline">ACERO NORTE</span><span class="trust-spark"></span><span class="trust-mark">LUMEN</span><span class="trust-spark"></span><span class="trust-mark trust-mark--outline">NODO 07</span><span class="trust-spark"></span><span class="trust-mark">ORBITAL</span><span class="trust-spark"></span><span class="trust-mark trust-mark--outline">PUNTO SUR</span></div></div></div>`;
     const processSection=document.querySelector('.process');if(processSection){const trustStrip=document.createElement('section');trustStrip.className='trust-strip';trustStrip.setAttribute('aria-label','Confían en nosotros');trustStrip.innerHTML=`<div class="trust-heading">Confían en nosotros</div>${trustMarkup}`;processSection.insertAdjacentElement('afterend',trustStrip)};
     const methodIllustrations=[
-      {image:'assets/isometric/industria-isometrica.png',alt:'Relevamiento técnico de una operación industrial',position:'35% 42%'},
-      {image:'assets/isometric/retail-isometrica.png',alt:'Diseño de una solución tecnológica integrada',position:'52% 48%'},
-      {image:'assets/isometric/institucion-isometrica.png',alt:'Coordinación de soluciones para un espacio institucional',position:'48% 45%'},
-      {image:'assets/isometric/industria-isometrica.png',alt:'Puesta en marcha de una solución tecnológica',position:'71% 68%'}
+      {image:'assets/method/relevamiento-tecnico.png',alt:'Escáner y plano técnico para relevamiento de una operación',position:'center'},
+      {image:'assets/method/proyecto-integrado.png',alt:'Plano de proyecto con sistemas tecnológicos conectados',position:'center'},
+      {image:'assets/method/coordinacion-integrada.png',alt:'Nodos tecnológicos coordinados en una misma red',position:'center'},
+      {image:'assets/method/puesta-en-marcha.png',alt:'Módulo de control activado para puesta en marcha',position:'center'}
     ];
     document.querySelectorAll('.step').forEach((step,index)=>{const visual=methodIllustrations[index];if(!visual)return;const figure=document.createElement('figure'),image=document.createElement('img');figure.className='method-illustration';image.src=visual.image;image.alt=visual.alt;image.loading='lazy';image.style.objectPosition=visual.position;figure.append(image);step.prepend(figure)});
     document.querySelectorAll('.sector').forEach((sector)=>{sector.classList.remove('is-open');sector.querySelector('.sector-trigger').setAttribute('aria-expanded','false');sector.querySelector('.sector-num')?.remove();sector.setAttribute('data-accordion-ready','')});
