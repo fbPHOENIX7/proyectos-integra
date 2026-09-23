@@ -82,6 +82,12 @@
     /* Method imagery: purpose-built transparent illustrations, each tied to its project phase. */
     .method-illustration{height:118px;background:linear-gradient(135deg,rgba(166,90,73,.08),rgba(91,188,224,.1))}.method-illustration img{width:100%;height:128px;object-fit:contain;object-position:center;transform:scale(1.02);filter:saturate(.94) contrast(1.04)}.step:hover .method-illustration img{transform:scale(1.08)}@media(max-width:800px){.method-illustration{height:130px}.method-illustration img{height:142px}}@media(prefers-reduced-motion:reduce){.step:hover .method-illustration img{transform:scale(1.02)}}
   </style>
+  <script>if(new URLSearchParams(window.location.search).has('embed'))document.documentElement.classList.add('embed-mode');</script>
+  <style>
+    /* Embed mode keeps Productos Integra's native header and footer outside this document. */
+    .embed-mode .nav,.embed-mode body>footer,.embed-mode .skip{display:none!important}.embed-mode .hero-content{padding-top:104px}.embed-mode .hero{min-height:clamp(570px,70svh,700px)}
+    @media(max-width:800px){.embed-mode .hero-content{padding-top:94px}.embed-mode .hero{min-height:620px}}
+  </style>
 </head>
 <body>
   <a class="skip" href="#contenido">Ir al contenido</a>
@@ -133,6 +139,7 @@
     document.querySelectorAll('.sector').forEach((sector,index)=>{const visual=sectorVisuals[index],carousel=sector.querySelector('[data-carousel]'),media=document.createElement('figure'),grid=document.createElement('span'),status=document.createElement('span'),label=document.createElement('span');media.className='sector-media';media.style.backgroundImage=`url('${visual.image}')`;media.setAttribute('role','img');media.setAttribute('aria-label',visual.alt);grid.className='sector-media-grid';status.className='sector-media-status';status.setAttribute('aria-hidden','true');label.className='sector-media-label';label.textContent=visual.label;media.append(grid,status,label);carousel.prepend(media)});
     document.querySelectorAll('[data-carousel]').forEach((carousel)=>{const track=carousel.querySelector('.sector-track'),slides=carousel.querySelectorAll('.sector-slide'),count=carousel.querySelector('.carousel-count');let index=0;const render=()=>{track.style.transform=`translateX(-${index*100}%)`;count.textContent=`${index+1} / ${slides.length}`;slides.forEach((slide,slideIndex)=>slide.setAttribute('aria-hidden',slideIndex===index?'false':'true'))};carousel.querySelector('[data-carousel-prev]').addEventListener('click',()=>{index=(index-1+slides.length)%slides.length;render()});carousel.querySelector('[data-carousel-next]').addEventListener('click',()=>{index=(index+1)%slides.length;render()});render()});
     form.addEventListener('submit',function(e){e.preventDefault();const d=new FormData(form),n=d.get('nombre'),s=d.get('sector'),p=d.get('proyecto');const text=`Hola, soy ${n}. Quiero conversar sobre un proyecto.\n\nSector: ${s}\nNecesidad: ${p}`;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2800);window.open('https://wa.me/5491162744877?text='+encodeURIComponent(text),'_blank','noopener');});
+    if(document.documentElement.classList.contains('embed-mode')&&window.parent!==window){let frameReport;const reportHeight=()=>{cancelAnimationFrame(frameReport);frameReport=requestAnimationFrame(()=>window.parent.postMessage({source:'integra-proyectos',height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},'*'))};new ResizeObserver(reportHeight).observe(document.body);window.addEventListener('load',reportHeight);window.addEventListener('resize',reportHeight);setTimeout(reportHeight,500)}
   </script>
 </body>
 </html>
